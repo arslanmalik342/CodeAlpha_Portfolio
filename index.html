@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Arslan - Web Designer & WordPress Developer. Modern, conversion-focused websites that help businesses grow.">
+    <title>Arslan | Web Designer & WordPress Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@500;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@500;600;700&amp;display=swap');
+        
+        :root {
+            --primary: #AEEBFF;
+            --mint: #D9FFD8;
+            --lime: #DFFF6A;
+        }
+        
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        
+        .heading-font {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%);
+        }
+
+        .floating-shape {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(5deg); }
+        }
+        
+        .skew-card {
+            transform: rotate(-3deg);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #111111;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+        }
+
+        .marquee {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .marquee-content {
+            display: inline-flex;
+            animation: marquee 25s linear infinite;
+        }
+        
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+</head>
+<body class="bg-white text-[#111111] overflow-x-hidden">
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="text-3xl font-bold heading-font tracking-tighter">ARSLAN</div>
+            
+            <!-- Navigation -->
+            <nav class="hidden md:flex items-center gap-x-8 text-sm font-medium">
+                <a href="#home" onclick="smoothScrollTo('home')" class="nav-link cursor-pointer">Home</a>
+                <a href="#about" onclick="smoothScrollTo('about')" class="nav-link cursor-pointer">About</a>
+                <a href="#services" onclick="smoothScrollTo('services')" class="nav-link cursor-pointer">Services</a>
+                <a href="#portfolio" onclick="smoothScrollTo('portfolio')" class="nav-link cursor-pointer">Portfolio</a>
+                <a href="#testimonials" onclick="smoothScrollTo('testimonials')" class="nav-link cursor-pointer">Testimonials</a>
+                <a href="#contact" onclick="smoothScrollTo('contact')" class="nav-link cursor-pointer">Contact</a>
+            </nav>
+            
+            <div class="flex items-center gap-x-4">
+                <div class="hidden sm:flex items-center gap-x-3 text-xl">
+                    <a href="#" class="hover:text-[#AEEBFF]"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" class="hover:text-[#AEEBFF]"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="hover:text-[#AEEBFF]"><i class="fa-brands fa-upwork"></i></a>
+                    <a href="#" class="hover:text-[#AEEBFF]"><i class="fa-brands fa-fiverr"></i></a>
+                </div>
+                <button onclick="smoothScrollTo('contact')" 
+                        class="px-6 py-3 bg-black text-white rounded-2xl font-semibold flex items-center gap-x-2 hover:scale-105 active:scale-95">
+                    <span>Hire Me</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-2xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t py-4">
+            <div class="flex flex-col px-6 gap-y-4 text-lg">
+                <a href="#home" onclick="toggleMobileMenu()" class="py-2">Home</a>
+                <a href="#about" onclick="toggleMobileMenu()" class="py-2">About</a>
+                <a href="#services" onclick="toggleMobileMenu()" class="py-2">Services</a>
+                <a href="#portfolio" onclick="toggleMobileMenu()" class="py-2">Portfolio</a>
+                <a href="#testimonials" onclick="toggleMobileMenu()" class="py-2">Testimonials</a>
+                <a href="#contact" onclick="toggleMobileMenu()" class="py-2">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="home" class="hero-bg min-h-screen flex items-center relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center pt-20">
+            <!-- Left Content -->
+            <div class="space-y-8">
+                <div class="inline-flex items-center gap-x-2 bg-white rounded-3xl px-5 py-2 shadow-sm border">
+                    <div class="w-2 h-2 bg-[#DFFF6A] rounded-full animate-pulse"></div>
+                    <span class="text-sm font-medium">Available for new projects</span>
+                </div>
+                
+                <h1 class="text-6xl md:text-7xl leading-[1.05] font-bold heading-font tracking-tighter">
+                    Designing Websites That <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#AEEBFF] via-[#D9FFD8] to-[#DFFF6A]">Convert</span> Visitors Into Clients
+                </h1>
+                
+                <p class="text-xl text-[#666666] max-w-lg">
+                    I design and develop modern WordPress and custom websites that help businesses grow online.
+                </p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <button onclick="smoothScrollTo('contact')" 
+                            class="px-8 py-4 bg-gradient-to-r from-[#AEEBFF] to-[#D9FFD8] hover:from-[#9be4ff] hover:to-[#c8ffc6] text-black font-semibold text-lg rounded-3xl flex items-center gap-x-3 shadow-lg shadow-[#AEEBFF]/50">
+                        Hire Me
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    
+                    <button onclick="smoothScrollTo('portfolio')" 
+                            class="px-8 py-4 border-2 border-black hover:bg-black hover:text-white font-semibold text-lg rounded-3xl">
+                        View My Work
+                    </button>
+                </div>
+                
+                <!-- Trust -->
+                <div class="flex items-center gap-x-8 pb-12">
+                    <div class="flex -space-x-4">
+                        <img src="https://picsum.photos/id/64/48/48" alt="Client" class="w-8 h-8 rounded-2xl ring-2 ring-white object-cover">
+                        <img src="https://picsum.photos/id/201/48/48" alt="Client" class="w-8 h-8 rounded-2xl ring-2 ring-white object-cover">
+                        <img src="https://picsum.photos/id/238/48/48" alt="Client" class="w-8 h-8 rounded-2xl ring-2 ring-white object-cover">
+                    </div>
+                    <div>
+                        <div class="font-semibold">100+ Happy Clients</div>
+                        <div class="text-sm text-[#666666]">Worldwide</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Visual -->
+            <div class="relative flex justify-center">
+                <!-- Background Shapes -->
+                <div class="absolute top-10 -left-10 w-72 h-72 bg-[#AEEBFF] rounded-[4rem] rotate-12 opacity-30 floating-shape"></div>
+                <div class="absolute bottom-20 -right-12 w-64 h-64 bg-[#D9FFD8] rounded-[5rem] -rotate-12 opacity-40 floating-shape" style="animation-delay: 2s;"></div>
+                
+                <!-- Main Image Container -->
+                <div class="relative z-10 skew-card bg-white p-4 rounded-3xl shadow-2xl max-w-md">
+                    <div class="relative">
+                        <!-- Your Photo -->
+                        <img id="hero-image" 
+                             src="https://picsum.photos/id/1015/600/700" 
+                             alt="Arslan - Web Designer & WordPress Developer"
+                             class="w-full rounded-2xl shadow-inner">
+                        
+                        <!-- Floating Skill Badges -->
+                        <div class="absolute -top-6 -left-6 bg-white px-5 py-2 rounded-2xl shadow-lg text-sm font-medium flex items-center gap-x-2">
+                            <span class="text-[#DFFF6A]">★</span>
+                            WordPress Developer
+                        </div>
+                        
+                        <div class="absolute top-1/3 -right-8 bg-white px-5 py-2 rounded-2xl shadow-lg text-sm font-medium">
+                            Web Designer
+                        </div>
+                        
+                        <div class="absolute bottom-12 -left-10 bg-white px-6 py-3 rounded-3xl shadow-lg text-sm font-medium flex items-center gap-x-2">
+                            <i class="fa-solid fa-bolt text-[#AEEBFF]"></i>
+                            Elementor Expert
+                        </div>
+                        
+                        <div class="absolute -bottom-4 right-8 bg-white/90 backdrop-blur px-5 py-2 rounded-2xl shadow text-xs font-semibold border">
+                            React • SEO
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Decorative Elements -->
+                <div class="absolute -top-8 right-12 text-6xl opacity-10">▲</div>
+                <div class="absolute bottom-12 left-12 text-5xl opacity-10 rotate-45">◆</div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 flex flex-col items-center gap-y-1 text-xs tracking-widest">
+            <div class="w-px h-12 bg-gradient-to-b from-transparent via-black/30 to-transparent"></div>
+            SCROLL
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="bg-[#111111] text-white py-5 overflow-hidden">
+        <div class="marquee">
+            <div class="marquee-content flex items-center gap-x-12 text-lg font-medium">
+                <span>WEB DESIGN</span>
+                <span class="text-[#DFFF6A]">✦</span>
+                <span>WORDPRESS</span>
+                <span class="text-[#DFFF6A]">✦</span>
+                <span>REACT JS</span>
+                <span class="text-[#DFFF6A]">✦</span>
+                <span>ELEMENTOR</span>
+                <span class="text-[#DFFF6A]">✦</span>
+                <span>SEO</span>
+                <span class="text-[#DFFF6A]">✦</span>
+                <span>UI/UX</span>
+                <span class="text-[#DFFF6A]">✦</span>
+                <!-- Duplicate for seamless loop -->
+                <span>WEB DESIGN</span>
+                <span class="text-[#DFFF6A]">✦</span>
+                <span>WORDPRESS</span>
+                <span class="text-[#DFFF6A]">✦</span>
+                <span>REACT JS</span>
+                <span class="text-[#DFFF6A]">✦</span>
+                <span>ELEMENTOR</span>
+                <span class="text-[#DFFF6A]">✦</span>
+                <span>SEO</span>
+                <span class="text-[#DFFF6A]">✦</span>
+                <span>UI/UX</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-16 items-center">
+                <div class="md:col-span-7">
+                    <h2 class="text-5xl heading-font font-bold tracking-tighter leading-tight mb-8">
+                        I Create Simple and Elegant Websites
+                    </h2>
+                    <p class="text-xl text-[#666666] max-w-2xl">
+                        I help businesses build professional, fast, and conversion-focused websites using WordPress, Elementor, React, and modern design principles.
+                    </p>
+                    
+                    <div class="mt-12 grid grid-cols-3 gap-8">
+                        <div>
+                            <div class="text-4xl font-bold">5+</div>
+                            <div class="text-[#666666]">Years Experience</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-bold">100+</div>
+                            <div class="text-[#666666]">Projects Delivered</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-bold">🌍</div>
+                            <div class="text-[#666666]">Worldwide Clients</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-5">
+                    <img src="https://picsum.photos/id/1015/700/520" 
+                         alt="Arslan working on website design"
+                         class="rounded-3xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="py-24 bg-[#F5F5F5]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="inline-block px-4 py-2 bg-white rounded-3xl text-sm font-medium mb-4">SERVICES</span>
+                <h2 class="text-5xl heading-font font-bold tracking-tighter">What I Offer</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Cards -->
+                <div class="service-card bg-white p-8 rounded-3xl shadow">
+                    <div class="text-5xl mb-6">📱</div>
+                    <h3 class="text-2xl font-semibold mb-3">WordPress Website Design</h3>
+                    <p class="text-[#666666]">Beautiful, fast-loading WordPress sites optimized for conversions.</p>
+                </div>
+                
+                <div class="service-card bg-white p-8 rounded-3xl shadow">
+                    <div class="text-5xl mb-6">⚡</div>
+                    <h3 class="text-2xl font-semibold mb-3">Elementor Development</h3>
+                    <p class="text-[#666666]">Pixel-perfect designs with advanced Elementor customizations.</p>
+                </div>
+                
+                <div class="service-card bg-white p-8 rounded-3xl shadow">
+                    <div class="text-5xl mb-6">🛒</div>
+                    <h3 class="text-2xl font-semibold mb-3">E-commerce Stores</h3>
+                    <p class="text-[#666666]">High-converting WooCommerce stores with seamless checkout.</p>
+                </div>
+                
+                <div class="service-card bg-white p-8 rounded-3xl shadow">
+                    <div class="text-5xl mb-6">🎓</div>
+                    <h3 class="text-2xl font-semibold mb-3">LMS & Membership Sites</h3>
+                    <p class="text-[#666666]">LearnDash & BuddyBoss powered online course platforms.</p>
+                </div>
+                
+                <div class="service-card bg-white p-8 rounded-3xl shadow">
+                    <div class="text-5xl mb-6">🔄</div>
+                    <h3 class="text-2xl font-semibold mb-3">Website Redesign</h3>
+                    <p class="text-[#666666]">Modernize your existing website with better UX and performance.</p>
+                </div>
+                
+                <div class="service-card bg-white p-8 rounded-3xl shadow">
+                    <div class="text-5xl mb-6">🚀</div>
+                    <h3 class="text-2xl font-semibold mb-3">Speed Optimization & SEO</h3>
+                    <p class="text-[#666666]">Lightning-fast loading and search engine optimization setup.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-5xl heading-font font-bold tracking-tighter">Selected Work</h2>
+                </div>
+                <div class="flex gap-x-3 text-sm">
+                    <button onclick="filterPortfolio('all')" class="portfolio-filter active px-6 py-3 rounded-3xl border">All</button>
+                    <button onclick="filterPortfolio('wordpress')" class="portfolio-filter px-6 py-3 rounded-3xl border">WordPress</button>
+                    <button onclick="filterPortfolio('react')" class="portfolio-filter px-6 py-3 rounded-3xl border">React</button>
+                </div>
+            </div>
+            
+            <div id="portfolio-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="py-24 bg-[#F5F5F5]">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-5xl heading-font font-bold tracking-tighter text-center mb-16">What Clients Say</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-3xl">
+                    <div class="flex gap-x-1 text-yellow-400 mb-6">★★★★★</div>
+                    <p class="italic text-[#444]">"Arslan delivered a stunning LMS platform that increased our course sales by 340% in the first month."</p>
+                    <div class="mt-8 flex items-center gap-x-4">
+                        <img src="https://picsum.photos/id/64/64/64" class="w-12 h-12 rounded-2xl" alt="">
+                        <div>
+                            <div class="font-semibold">Sarah Chen</div>
+                            <div class="text-sm text-[#666]">CEO, Growth Academy</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-3xl">
+                    <div class="flex gap-x-1 text-yellow-400 mb-6">★★★★★</div>
+                    <p class="italic text-[#444]">"Professional, fast, and incredibly talented. Our new e-commerce store looks premium and converts beautifully."</p>
+                    <div class="mt-8 flex items-center gap-x-4">
+                        <img src="https://picsum.photos/id/201/64/64" class="w-12 h-12 rounded-2xl" alt="">
+                        <div>
+                            <div class="font-semibold">Marcus Rodriguez</div>
+                            <div class="text-sm text-[#666]">Founder, EcoWear</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-3xl">
+                    <div class="flex gap-x-1 text-yellow-400 mb-6">★★★★★</div>
+                    <p class="italic text-[#444]">"The redesign transformed our online presence. Arslan understood our vision perfectly."</p>
+                    <div class="mt-8 flex items-center gap-x-4">
+                        <img src="https://picsum.photos/id/238/64/64" class="w-12 h-12 rounded-2xl" alt="">
+                        <div>
+                            <div class="font-semibold">Priya Sharma</div>
+                            <div class="text-sm text-[#666]">Director, ConsultPro</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="py-20 bg-black text-white">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+            <div>
+                <div id="projects-count" class="stat-number text-6xl font-bold heading-font">100</div>
+                <div class="text-[#AEEBFF]">Projects Completed</div>
+            </div>
+            <div>
+                <div id="years-count" class="stat-number text-6xl font-bold heading-font">5</div>
+                <div class="text-[#AEEBFF]">Years Experience</div>
+            </div>
+            <div>
+                <div id="clients-count" class="stat-number text-6xl font-bold heading-font">50</div>
+                <div class="text-[#AEEBFF]">Repeat Clients</div>
+            </div>
+            <div>
+                <div class="text-6xl font-bold heading-font">24/7</div>
+                <div class="text-[#AEEBFF]">Support</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-16">
+                <div class="md:col-span-5">
+                    <h2 class="text-6xl heading-font font-bold tracking-tighter leading-none mb-8">Let's Build Your Website</h2>
+                    <p class="text-xl text-[#666666]">Ready to take your online presence to the next level? Let's discuss your project.</p>
+                    
+                    <div class="mt-12 space-y-8">
+                        <div class="flex items-start gap-x-5">
+                            <i class="fa-solid fa-envelope text-3xl mt-1"></i>
+                            <div>
+                                <div class="font-medium">Email</div>
+                                <a href="mailto:hello@arslan.dev" class="text-[#666666] hover:text-black">hello@arslan.dev</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-x-5">
+                            <i class="fa-solid fa-phone text-3xl mt-1"></i>
+                            <div>
+                                <div class="font-medium">WhatsApp</div>
+                                <a href="#" class="text-[#666666] hover:text-black">+92 320 5801360</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="md:col-span-7 bg-white border rounded-3xl p-10 shadow">
+                    <form id="contact-form" class="space-y-8">
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm mb-2 font-medium">Your Name</label>
+                                <input type="text" id="name" required class="w-full px-6 py-5 border rounded-2xl focus:outline-none focus:border-[#AEEBFF]">
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-2 font-medium">Email Address</label>
+                                <input type="email" id="email" required class="w-full px-6 py-5 border rounded-2xl focus:outline-none focus:border-[#AEEBFF]">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm mb-2 font-medium">Project Details</label>
+                            <textarea id="details" rows="5" class="w-full px-6 py-5 border rounded-3xl focus:outline-none focus:border-[#AEEBFF]"></textarea>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm mb-2 font-medium">Budget Range</label>
+                                <select id="budget" class="w-full px-6 py-5 border rounded-2xl focus:outline-none focus:border-[#AEEBFF]">
+                                    <option>$1,000 - $3,000</option>
+                                    <option>$3,000 - $7,000</option>
+                                    <option>$7,000+</option>
+                                </select>
+                            </div>
+                            <div class="flex items-end">
+                                <button type="submit" 
+                                        class="w-full bg-gradient-to-r from-[#AEEBFF] to-[#D9FFD8] py-6 rounded-3xl font-semibold text-xl">
+                                    Send Message
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#111111] text-white py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-y-8">
+                <div>
+                    <div class="text-4xl font-bold heading-font tracking-tighter mb-2">ARSLAN</div>
+                    <p class="text-[#888]">Web Designer &amp; WordPress Developer</p>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-x-8 text-sm">
+                    <a href="#" class="hover:text-[#AEEBFF]">Home</a>
+                    <a href="#" class="hover:text-[#AEEBFF]">Services</a>
+                    <a href="#" class="hover:text-[#AEEBFF]">Portfolio</a>
+                    <a href="#" class="hover:text-[#AEEBFF]">About</a>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <div class="flex gap-x-6 text-2xl justify-center md:justify-end mb-6">
+                        <i class="fa-brands fa-linkedin hover:text-[#AEEBFF] cursor-pointer"></i>
+                        <i class="fa-brands fa-github hover:text-[#AEEBFF] cursor-pointer"></i>
+                    </div>
+                    <p class="text-xs text-[#666]">© 2026 Arslan. All Rights Reserved.</p>
+                    <p class="text-xs text-[#666]">Designed and Developed by Arslan</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tailwind Script already included via CDN
+        
+        function smoothScrollTo(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+            if (window.innerWidth < 768) {
+                toggleMobileMenu(true);
+            }
+        }
+        
+        function toggleMobileMenu(forceClose = false) {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-btn');
+            
+            if (forceClose || menu.classList.contains('hidden') === false) {
+                menu.classList.add('hidden');
+                icon.innerHTML = '<i class="fa-solid fa-bars"></i>';
+            } else {
+                menu.classList.remove('hidden');
+                icon.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            }
+        }
+        
+        // Portfolio Data
+        const portfolioItems = [
+            {
+                id: 1,
+                title: "LearnSphere LMS",
+                category: "wordpress",
+                image: "https://picsum.photos/id/201/800/600",
+                desc: "Full-featured online learning platform with LearnDash",
+                tech: "WordPress • LearnDash • BuddyBoss"
+            },
+            {
+                id: 2,
+                title: "LuxeStore E-commerce",
+                category: "wordpress",
+                image: "https://picsum.photos/id/180/800/600",
+                desc: "Premium fashion store with seamless checkout",
+                tech: "WooCommerce • Elementor"
+            },
+            {
+                id: 3,
+                title: "React Dashboard SaaS",
+                category: "react",
+                image: "https://picsum.photos/id/237/800/600",
+                desc: "Modern SaaS dashboard with real-time analytics",
+                tech: "React • Tailwind"
+            },
+            {
+                id: 4,
+                title: "ConsultPro Agency",
+                category: "wordpress",
+                image: "https://picsum.photos/id/251/800/600",
+                desc: "Corporate website for management consulting firm",
+                tech: "WordPress • Elementor"
+            }
+        ];
+        
+        function renderPortfolio(filteredItems = portfolioItems) {
+            const container = document.getElementById('portfolio-grid');
+            container.innerHTML = '';
+            
+            filteredItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "group bg-white rounded-3xl overflow-hidden shadow hover:shadow-2xl";
+                card.innerHTML = `
+                    <div class="relative">
+                        <img src="${item.image}" class="w-full aspect-video object-cover" alt="${item.title}">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 flex items-end p-6">
+                            <button onclick="alert('Live preview for ${item.title} would open here')" 
+                                    class="bg-white text-black text-sm px-6 py-3 rounded-2xl font-medium w-full">
+                                Live Preview →
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="text-xs uppercase tracking-widest text-[#AEEBFF] mb-1">${item.tech}</div>
+                        <h3 class="text-2xl font-semibold mb-2">${item.title}</h3>
+                        <p class="text-[#666666]">${item.desc}</p>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+        
+        function filterPortfolio(category) {
+            document.querySelectorAll('.portfolio-filter').forEach(btn => {
+                btn.classList.remove('active', 'bg-black', 'text-white');
+                if (btn.getAttribute('onclick').includes(category)) {
+                    btn.classList.add('active', 'bg-black', 'text-white');
+                }
+            });
+            
+            if (category === 'all') {
+                renderPortfolio();
+            } else {
+                const filtered = portfolioItems.filter(item => item.category === category);
+                renderPortfolio(filtered);
+            }
+        }
+        
+        // Counter Animation
+        function animateCounter(id, target, duration = 2000, suffix = '') {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const element = document.getElementById(id);
+            
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = Math.floor(target) + suffix;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start) + suffix;
+                }
+            }, 16);
+        }
+        
+        // Form Submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert("Thank you! Your message has been received. I'll get back to you within 24 hours.");
+            this.reset();
+        });
+        
+        // Initialize everything
+        function initialize() {
+            // Render portfolio
+            renderPortfolio();
+            
+            // Start counters when scrolled into view
+            const statsSection = document.querySelector('section.bg-black');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter('projects-count', 120);
+                        animateCounter('years-count', 5);
+                        animateCounter('clients-count', 68);
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            if (statsSection) observer.observe(statsSection);
+            
+            // Mobile menu
+            document.getElementById('mobile-menu-btn').addEventListener('click', () => toggleMobileMenu());
+            
+            // Keyboard escape support
+            document.addEventListener('keydown', (e) => {
+                if (e.key === "Escape") {
+                    const menu = document.getElementById('mobile-menu');
+                    if (!menu.classList.contains('hidden')) toggleMobileMenu(true);
+                }
+            });
+            
+            console.log('%c✅ Portfolio website initialized successfully!', 'color: #10b981; font-weight: bold');
+        }
+        
+        // Boot the app
+        window.onload = initialize;
+    </script>
+</body>
+</html>
+```
